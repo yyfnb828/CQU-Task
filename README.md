@@ -1,5 +1,4 @@
-# CQU-Task
-software engineering Task
+# CQU-software engineering Task
 姓名       githubID
 闫宇飞     yyfnb828
 张灵玺     kiiiko
