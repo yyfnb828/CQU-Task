@@ -3,6 +3,7 @@
 # @Author : yyfnb
 # @FileName: new calculator.py
 from tkinter import *
+import math
 
 exp_str = ""
 History_list = []
@@ -20,9 +21,10 @@ label=Label(frame,text="",height= 3 , width=70,bg='white')
 label.pack() #显示框
 
 # 设置全局变量，即按一个button，将按钮对应的运算符加入字符串中，最后利用eval函数进行计算
-global s
-s=""
-
+global s,list,list1
+s = ""
+list = []
+list1 = []
 # 按钮0-9以及小数点的实现
 #按钮.
 def figure_dot():
@@ -116,7 +118,7 @@ btn9.place(x=150,y=180)#按钮9
 # 运算符号实现
 def figure_addition():
     global s
-    s=s+"+"
+    s=s+" + "
     label.config(text=s)
 btn_add=Button(window,text="+",width=4,command=figure_addition,bg='yellow')
 btn_add.place(x=220,y=80)#加法按钮
@@ -124,7 +126,7 @@ btn_add.place(x=220,y=80)#加法按钮
 #减法按钮
 def figure_subtraction():
     global s
-    s=s+"-"
+    s=s+" - "
     label.config(text=s)
 btn_sub=Button(window,text="-",width=4,command=figure_subtraction,bg='yellow')
 btn_sub.place(x=220,y=130)#减法按钮
@@ -132,7 +134,7 @@ btn_sub.place(x=220,y=130)#减法按钮
 #乘法按钮
 def figure_multiplication():
     global s
-    s=s+"*"
+    s=s+" * "
     label.config(text=s)
 btn_multi=Button(window,text="*",width=4,command=figure_multiplication,bg='yellow')
 btn_multi.place(x=290,y=80)#乘法按钮
@@ -140,7 +142,7 @@ btn_multi.place(x=290,y=80)#乘法按钮
 #除法按钮
 def figure_division():
     global s
-    s=s+"/"
+    s=s+" / "
     label.config(text=s)
 btn_divi=Button(window,text="/",width=4,command=figure_division,bg='yellow')
 btn_divi.place(x=290,y=130)#除法按钮
@@ -148,7 +150,7 @@ btn_divi.place(x=290,y=130)#除法按钮
 # 三角函数运算
 def figure_trigonometricsin():
     global s
-    s = s+"sin"
+    s = s+" sin "
     label.config(text=s)
 
 btn_sin=Button(window,text="sin",width=4,command=figure_trigonometricsin,bg='yellow')
@@ -156,7 +158,7 @@ btn_sin.place(x=360,y=80)#sin按钮
 
 def figure_trigonometriccos():
     global s
-    s = s + 'cos'
+    s = s + ' cos '
     label.config(text=s)
 
 btn_cos=Button(window,text="cos",width=4,command=figure_trigonometriccos,bg='yellow')
@@ -164,7 +166,7 @@ btn_cos.place(x=360,y=130)#cos按钮
 
 def figure_trigonometrictan():
     global s
-    s = s + 'tan'
+    s = s + ' tan '
     label.config(text=s)
 
 btn_tan=Button(window,text="tan",width=4,command=figure_trigonometrictan,bg='yellow')
@@ -172,7 +174,7 @@ btn_tan.place(x=360,y=180)#tan按钮
 
 def figure_trigonometricarcsin():
     global s
-    s = s + 'arcsin'
+    s = s + ' arcsin '
     label.config(text=s)
 
 btn_arcsin=Button(window,text="arcsin",width=4,command=figure_trigonometricarcsin,bg='yellow')
@@ -180,7 +182,7 @@ btn_arcsin.place(x=220,y=180)#arcsin按钮
 
 def figure_trigonometricarccos():
     global s
-    s = s + 'arccos'
+    s = s + ' arccos '
     label.config(text=s)
 
 btn_arccos=Button(window,text="arccos",width=4,command=figure_trigonometricarccos,bg='yellow')
@@ -188,7 +190,7 @@ btn_arccos.place(x=290,y=180)#arccos按钮
 
 def figure_trigonometricarctan():
     global s
-    s = s + 'arctan'
+    s = s + ' arctan '
     label.config(text=s)
 
 btn_arctan=Button(window,text="arctan",width=4,command=figure_trigonometricarctan,bg='yellow')
@@ -196,8 +198,10 @@ btn_arctan.place(x=220,y=230)#arctan按钮
 
 # 清空窗口button C 的实现
 def figure_clear():
-    global s
+    global s,list,list1
     s=""
+    list = []
+    list1 = []
     label.config(text=s)
 btn_clear=Button(window,text="clear",width=4,command=figure_clear,bg='yellow')
 btn_clear.place(x=290,y=230)#清空按钮
@@ -205,6 +209,48 @@ btn_clear.place(x=290,y=230)#清空按钮
 # 结果输出函数eval
 def figure_value():
     global s
+    global list
+    list = s.split()
+    print(list)
+    for i in range(len(list) ):
+        if list[i] == 'sin':
+            # list1.append(math.sin(math.pi/180*int(list[i+1])))
+            list[i+1] = math.sin(math.pi/180*int(list[i+1]))
+
+            # list.insert(i+1,math.sin(math.pi/180*int(list[i+1])))
+            # print(math.pi/180*int(list[i+2]))
+            # print(math.sin(math.pi/180*int(list[i+2])))
+            # list.remove(list[i])
+            # list.remove(list[i+1])
+
+        elif list[i] == 'cos':
+            # list[i+1].replace(math.cos(list[i+1]*180/math.pi))
+            # del list[i]
+            list[i + 1] = math.cos(math.pi / 180 * int(list[i + 1]))
+        elif list[i] == 'tan':
+            # list[i+1].replace(math.tan(list[i+1]*180/math.pi))
+            # del list[i]
+            list[i + 1] = math.tan(math.pi / 180 * int(list[i + 1]))
+        elif list[i] == 'arcsin':
+            # list[i+1].replace(math.asin(list[i+1]))
+            # del list[i]
+            list[i + 1] =int( (math.asin(float(list[i + 1])))*180/(math.pi))
+        elif list[i] == 'arccos':
+            # list[i+1].replace(math.acos(list[i+1]))
+            # del list[i]
+            list[i + 1] = int((math.acos(float(list[i + 1])))*180/(math.pi))
+        elif list[i] == 'arctan':
+            # list[i+1].replace(math.atan(list[i+1]))
+            # del list[i]
+            list[i + 1] = int((math.atan(float(list[i + 1])))*180/(math.pi))
+        else :
+            # if list[i - 2] != 'sin' or list[i -1] != 'cos' or list[i -1] != 'tan' or list[i -1] != 'arcsin' or list[i -1] != 'arccos' or list[i -1] != 'arctan' :
+                list1.append(list[i])
+            # else :
+            #     pass
+
+    s = " ".join('%s' %id for id in list1)
+
     print(s)
     x=eval(s)
     s=str(x)
