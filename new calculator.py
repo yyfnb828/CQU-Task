@@ -234,7 +234,7 @@ def figure_value():
         elif list[i] == 'arcsin':
             # list[i+1].replace(math.asin(list[i+1]))
             # del list[i]
-            list[i + 1] =int( (math.asin(float(list[i + 1])))*180/(math.pi))
+            list[i + 1] =int( (math.asin(float(list[i + 1])))*180/(math.pi))#将math算出的反三角函数值转化为角度
         elif list[i] == 'arccos':
             # list[i+1].replace(math.acos(list[i+1]))
             # del list[i]
@@ -258,11 +258,5 @@ def figure_value():
 
 btn_value=Button(window,text="=",width=4,command=figure_value,bg='yellow')
 btn_value.place(x=360,y=230)#结果按钮
-
-# 改变颜色
-def figure_colorchange():
-    window.config(bg="purple")
-btn_value=Button(window,text="color",width=4,command=figure_colorchange,bg='white')
-btn_value.place(x=150,y=230)#改变颜色
 
 window.mainloop()
